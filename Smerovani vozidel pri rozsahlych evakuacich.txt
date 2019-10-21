@@ -1,34 +1,12 @@
 Smerovani vozidel pri rozsahlych evakuacich
 
-Problem smerovani vozidel (VRP - Vehicle Routing Problem) je optimalizacni uloha pro planovani tras flotily vozidel pro obsluhu skupiny zakazniku. 
-Tato uloha patøí mezi tzv. NP-tìžké úlohy, to znamena ze v obecném pøípadì není známo, ani jak pro každý vstup nalézt pøesné 
-øešení v rozumném èase, a dokonce ani zda vùbec mùže existovat algoritmus, který takové øešení najde v akceptovatelnem èase. 
-V praxi se podobná úloha obvykle øeší pouze pøibližnì (heuristickými algoritmy, napø. genetickými algoritmy, tabu prohledáváním atd.). 
-Tím se (za cenu vzdání se nároku na nalezení optimálního øešení) dosahuje prakticky použitelných èasù.
-
-Pro pouziti v humanitarni oblasti, at uz pri evakuaci nebo distribuci pomoci existuje pro problémy se smìrováním vozidel nekolik variaci  a specializaci problému.
-Jedna se zejmena o variaci kdy se v problemu musi pocitat s omezenou kapacitou vozidel CVRP - Capacitated Vehicle Routing Problem).
-(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je varianta CVRP kde je jednotlive vozidla mozne pouzit v ramci vice cest.
-
-V  je typickym cílem MTCVRP minimalizace souètu cestovních nákladu (v jednotkách èasu nebo v jednotkách vzdálenosti).
-Kontext, který je blíže humanitárnímu pøístupu, lze nalézt v odborne literatuøe jako problém kumulativního kapacitního smìrování vozidel s více cestami 
-(MT-CCVRP), což je varianta MTCVRP s tím rozdílem, že nyní je cílem minimalizace souètu èasù pøíjezdu do jednotlivych destinaci. 
-To znamená minimalizaci èekací doby obìti katastrof žádajích o pomoc, také známé jako latence. 
-V tomto èlánku budeme místo klasického latence uvažovat o maximální èekací doba v jednotlivych destinaci, 
-tj. minimalizace èasu èekání poslední postižené obìti v oblasti katastrofy, která má být navštívena .
-Mezi klasickou a maximalni latenci je zasadni rozdil. Kdy pri humanitární katastrofì je dùležitìjší  
-minimalizace èekací doby poslední postižené obìti evakuované pøi katastrofì  spíše než souèet všech.
-Tímto zpùsobem se snažíme vyhnout tomu ze by nektere postižene obìti v oblasti katastrofy
-èekaly na zachranmu velmi dlouho, zatim co by byl zbytek evakuován vyrazne døíve.
-To znamená, že se snažíme vyrovnat èekací dobu na evakuaci všech postižených.
+Problem smerovani vozidel (VRP - Vehicle Routing Problem) je optimalizacni uloha pro planovani tras flotily vozidel pro obsluhu skupiny zakazniku. Tato uloha patøí mezi tzv. NP-tìžké úlohy, to znamena ze v obecném pøípadì není známo, ani jak pro každý vstup nalézt pøesné øešení v rozumném èase, a dokonce ani zda vùbec mùže existovat algoritmus, který takové øešení najde v akceptovatelnem èase. V praxi se podobná úloha obvykle øeší pouze pøibližnì (heuristickými algoritmy, napø. genetickými algoritmy, tabu prohledáváním atd.). Tím se (za cenu vzdání se nároku na nalezení optimálního øešení) dosahuje prakticky použitelných èasù.
+Pro pouziti v humanitarni oblasti, at uz pri evakuaci nebo distribuci pomoci existuje pro problémy se smìrováním vozidel nekolik variaci  a specializaci problému. Jedna se zejmena o variaci kdy se v problemu musi pocitat s omezenou kapacitou vozidel CVRP - Capacitated Vehicle Routing Problem). (MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je varianta CVRP kde je jednotlive vozidla mozne pouzit v ramci vice cest. V  je typickym cílem MTCVRP minimalizace souètu cestovních nákladu (v jednotkách èasu nebo v jednotkách vzdálenosti).
+Kontext, který je blíže humanitárnímu pøístupu, lze nalézt v odborne literatuøe jako problém kumulativního kapacitního smìrování vozidel s více cestami (MT-CCVRP), což je varianta MTCVRP s tím rozdílem, že nyní je cílem minimalizace souètu èasù pøíjezdu do jednotlivych destinaci. To znamená minimalizaci èekací doby obìti katastrof žádajích o pomoc, také známé jako latence. V tomto èlánku budeme místo klasického latence uvažovat o maximální èekací doba v jednotlivych destinaci, tj. minimalizace èasu èekání poslední postižené obìti v oblasti katastrofy, která má být navštívena. Mezi klasickou a maximalni latenci je zasadni rozdil. Kdy pri humanitární katastrofì je dùležitìjší minimalizace èekací doby poslední postižené obìti evakuované pøi katastrofì  spíše než souèet všech. Tímto zpùsobem se snažíme vyhnout tomu ze by nektere postižene obìti v oblasti katastrofy èekaly na zachranmu velmi dlouho, zatim co by byl zbytek evakuován vyrazne døíve. To znamená, že se snažíme vyrovnat èekací dobu na evakuaci všech postižených.
 [1]
 
-(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je obvykle definovan jako ohodnoceny orientovany graf kde 
- uzly jsou jednotlive destinace (v nasem pripade obìti cekajici na zachranu) a hrany jsou cesty spojujici tyto destinace.
- Hodnoty hran odpovidaji jejich cetovnimu casu.
- prvni uzle representuje depo kde je disponovana flotila identickych dopravnich prostredku s  limitovanou kapacitou.
-The MTVRP calls for the determination of a set of trips and an assignment of each trip to a
-vehicle, such that the traveled time is minimized and the following conditions are satisfied:
+(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je obvykle definovan jako ohodnoceny orientovany graf kde uzly jsou jednotlive destinace (v nasem pripade obìti cekajici na zachranu) a hrany jsou cesty spojujici tyto destinace. Hodnoty ran odpovidaji jejich cetovnimu casu. prvni uzle representuje depo kde je disponovana flotila identickych dopravnich prostredku s  limitovanou kapacitou.
+The MTVRP calls for the determination of a set of trips and an assignment of each trip to a  vehicle, such that the traveled time is minimized and the following conditions are satisfied:
 (i) each trip starts and ends at the depot,
 (ii) each customer is visited exactly once,
 (iii) the sum of the demands of the customers in any trip does not exceed Q,
@@ -36,7 +14,22 @@ vehicle, such that the traveled time is minimized and the following conditions a
 exceed TH (a trip duration being the sum of the travel times on arcs used in the trip).
 [4]
 
-4 Metaheuristic approach
+Several approaches have been used for solving (or dealing with) different variants of the stochastic VRP. Here a review of these approaches is presented, trying to cover most of the methods designed to tackle such problems. The major dichotomy in
+terms of solution methods is of course between exact methods on one side versus heuristic methods on the other. Although realistic stochastic VRP problems are often hard to solve, exact methods have been employed with some success. These methods view the problem as special case of an integer-, or mixed-integer program and employ some form of branching, so that eventually a probably optimal solution will be found. Even when employed  on instances that are too large for full convergence, the methods can often find very good solutions.
+
+Pro øešení (nebo øešení) rùzných variant stochastického VRP bylo použito nìkolik pøístupù. Zde je pøehled tìchto pøístupù, které se snaží pokrýt vìtšinu metod navržených k øešení tìchto problémù. Hlavní dichotomie v
+termíny metod øešení jsou samozøejmì mezi pøesnými metodami na jedné stranì a heuristickými metodami na stranì druhé. Pøestože realistické stochastické problémy VRP se èasto obtížnì øeší, byly s urèitým úspìchem použity pøesné metody. Tyto metody považují problém za zvláštní pøípad celoèíselného nebo smíšeného celoèíselného programu a používají nìjakou formu vìtvení, takže nakonec bude nalezeno pravdìpodobnì optimální øešení. I když jsou tyto metody používány v pøípadech, které jsou pøíliš velké na plnou konvergenci, mohou èasto najít velmi dobrá øešení. 
+[6]
+
+
+
+2.2 Heuristic approaches
+
+There are many stochastic problems with no exact solution method known to work
+for reasonable sized problems. This creates the need for heuristics, which, even
+though they do not guarantee to find an optimal solution to the problems, may be
+able to find a good solution to them. This is a popular and growing area in the
+literature.
 
 LS
 The role of a LS is to improve a
@@ -86,11 +79,8 @@ MaxStart successive ILS are executed
 [3]
 
 TABU SEARCH
+Tabu search enhances the performance of local search by relaxing its basic rule. First, at each step worsening moves can be accepted if no improving move is available (like when the search is stuck at a strict local minimum). In addition, prohibitions (henceforth the term tabu) are introduced to discourage the search from coming back to previously-visited solutions.
 
-3.2. Initial solution
-A parallel greedy insertion method is adopted to generate an initial solution. 
-In other words, we first assign the nearest | R | customers to the depot as the first customer in the routes, followed by the computation of the insertion costs for the remaining customers. The customer with the lowest insertion cost (among all routes) is then assigned accordingly. In the case of a tie, the customer with a precedent index is chosen. These steps are repeated until all customers are inserted. If a feasible insertion is not found for a customer ‘ a ’, we employ a simple perturbation strategy by considering removing an existing customer, say customer ‘ b ’ one-by-one systematically from the routes and inserting customer ‘ a ’ in this route, where this move must be a feasible move irrespective of the cost of insertion. Customer ‘ b ’ will then be inserted to another route by repeating the same process until both customers ‘ a ’ and ‘ b ’ are inserted or the termination criterion is reached. Here, we maintain a simple tabu list of size ts = max (5 , 0 . 01 n ) to prevent the same customers to be deleted each time. When a customer (‘ a ’ or ‘ b ’) is inserted, it is flagged tabu so that it will not be deleted in the next ts iterations. This perturbation strategy terminates when there is no other customer that can be deleted from the routes to enable a feasible insertion of customer ‘ b ’. For this case, customer ‘ b ’ is added to the route with the smallest capacity violation and the route is penalized accordingly as will be discussed in Section 3.4 .
-[2]
 
 
 
