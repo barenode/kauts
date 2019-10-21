@@ -1,0 +1,103 @@
+Smerovani vozidel pri rozsahlych evakuacich
+
+Problem smerovani vozidel (VRP - Vehicle Routing Problem) je optimalizacni uloha pro planovani tras flotily vozidel pro obsluhu skupiny zakazniku. 
+Tato uloha patøí mezi tzv. NP-tìžké úlohy, to znamena ze v obecném pøípadì není známo, ani jak pro každý vstup nalézt pøesné 
+øešení v rozumném èase, a dokonce ani zda vùbec mùže existovat algoritmus, který takové øešení najde v akceptovatelnem èase. 
+V praxi se podobná úloha obvykle øeší pouze pøibližnì (heuristickými algoritmy, napø. genetickými algoritmy, tabu prohledáváním atd.). 
+Tím se (za cenu vzdání se nároku na nalezení optimálního øešení) dosahuje prakticky použitelných èasù.
+
+Pro pouziti v humanitarni oblasti, at uz pri evakuaci nebo distribuci pomoci existuje pro problémy se smìrováním vozidel nekolik variaci  a specializaci problému.
+Jedna se zejmena o variaci kdy se v problemu musi pocitat s omezenou kapacitou vozidel CVRP - Capacitated Vehicle Routing Problem).
+(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je varianta CVRP kde je jednotlive vozidla mozne pouzit v ramci vice cest.
+
+V  je typickym cílem MTCVRP minimalizace souètu cestovních nákladu (v jednotkách èasu nebo v jednotkách vzdálenosti).
+Kontext, který je blíže humanitárnímu pøístupu, lze nalézt v odborne literatuøe jako problém kumulativního kapacitního smìrování vozidel s více cestami 
+(MT-CCVRP), což je varianta MTCVRP s tím rozdílem, že nyní je cílem minimalizace souètu èasù pøíjezdu do jednotlivych destinaci. 
+To znamená minimalizaci èekací doby obìti katastrof žádajích o pomoc, také známé jako latence. 
+V tomto èlánku budeme místo klasického latence uvažovat o maximální èekací doba v jednotlivych destinaci, 
+tj. minimalizace èasu èekání poslední postižené obìti v oblasti katastrofy, která má být navštívena .
+Mezi klasickou a maximalni latenci je zasadni rozdil. Kdy pri humanitární katastrofì je dùležitìjší  
+minimalizace èekací doby poslední postižené obìti evakuované pøi katastrofì  spíše než souèet všech.
+Tímto zpùsobem se snažíme vyhnout tomu ze by nektere postižene obìti v oblasti katastrofy
+èekaly na zachranmu velmi dlouho, zatim co by byl zbytek evakuován vyrazne døíve.
+To znamená, že se snažíme vyrovnat èekací dobu na evakuaci všech postižených.
+[1]
+
+(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je obvykle definovan jako ohodnoceny orientovany graf kde 
+ uzly jsou jednotlive destinace (v nasem pripade obìti cekajici na zachranu) a hrany jsou cesty spojujici tyto destinace.
+ Hodnoty hran odpovidaji jejich cetovnimu casu.
+ prvni uzle representuje depo kde je disponovana flotila identickych dopravnich prostredku s  limitovanou kapacitou.
+The MTVRP calls for the determination of a set of trips and an assignment of each trip to a
+vehicle, such that the traveled time is minimized and the following conditions are satisfied:
+(i) each trip starts and ends at the depot,
+(ii) each customer is visited exactly once,
+(iii) the sum of the demands of the customers in any trip does not exceed Q,
+(iv) the sum of the durations of the trips assigned to the same vehicle (journey) does not
+exceed TH (a trip duration being the sum of the travel times on arcs used in the trip).
+[4]
+
+4 Metaheuristic approach
+
+LS
+The role of a LS is to improve a
+given solution by performing a set of small modifications (or moves) to the studied
+solution. One can say that the LS visits the neighborhood of the studied solution
+and selects the best neighboring solution according to some criterion. After some
+iterations, the LS is no longer able produce better quality solutions using the same
+set of moves. We say that the heuristic is trapped in a local optimum.
+
+ILS
+We recall that ILS principle is to improve a given initial solution by alternating
+local search (LS) and perturbation procedures. 
+To help LS to escape local optima, ILS provides a perturbation procedure.
+The latter procedure performs some changes to the current local optimum, producing
+thereby a new starting solution for the LS. The quality of that new
+starting solution is generally not as good as the quality of the local optimum.
+That decrease in the solution quality induced by the perturbation procedure
+allows the LS to visit a larger search space area.
+In the present paper, we attempt to improve a simple ILS heuristic by modifying
+its local search and perturbation procedures. Several ILS hybridizations
+are implemented based on several simple LS heuristics, a Variable Neighborhood
+Descent with Random neighborhood ordering (RVND) and a Large Neighborhood
+Search heuristic (LNS).
+3.2 Iterated Local Search
+ILS principle is described in Sect. 1. The pseudo-code of the ILS heuristic used
+in the present paper is given in Algorithm 2. ILS starts from an initial solution
+given by the construction heuristic presented in Sect. 3.1. Then a local search
+procedure is executed for a given number of iterations. If the obtained solution
+is better than the current best one, the best solution is replaced by the obtained
+one. The solution is, after that, perturbed using a perturbation procedure. The
+process is repeated until a stopping criterion is met. In the present work, the
+stopping criterion stands for the completion of a given number of iterations
+without improvement.
+[2]
+
+
+4.1 Principle and general structure
+The proposed metaheuristic is a multi-start iterated local search (MS-ILS) calling a
+variable neighborhood descent (VND). Iterated local search has proved its efficiency
+on various optimization problems, see the tutorial of Lourenço et al. [47]. The MSILS
+variant, consisting in restarting an ILS from several initial solutions to diversify
+the search, has given excellent solutions on the CVRP [63]. VND is a kind of local
+search in which wider and wider neighborhoods are successively explored [53]. The
+resulting hybrid metaheuristic is sketched in Algorithm 1 while its internal components
+are described in the sequel.
+MaxStart successive ILS are executed
+[3]
+
+TABU SEARCH
+
+3.2. Initial solution
+A parallel greedy insertion method is adopted to generate an initial solution. 
+In other words, we first assign the nearest | R | customers to the depot as the first customer in the routes, followed by the computation of the insertion costs for the remaining customers. The customer with the lowest insertion cost (among all routes) is then assigned accordingly. In the case of a tie, the customer with a precedent index is chosen. These steps are repeated until all customers are inserted. If a feasible insertion is not found for a customer ‘ a ’, we employ a simple perturbation strategy by considering removing an existing customer, say customer ‘ b ’ one-by-one systematically from the routes and inserting customer ‘ a ’ in this route, where this move must be a feasible move irrespective of the cost of insertion. Customer ‘ b ’ will then be inserted to another route by repeating the same process until both customers ‘ a ’ and ‘ b ’ are inserted or the termination criterion is reached. Here, we maintain a simple tabu list of size ts = max (5 , 0 . 01 n ) to prevent the same customers to be deleted each time. When a customer (‘ a ’ or ‘ b ’) is inserted, it is flagged tabu so that it will not be deleted in the next ts iterations. This perturbation strategy terminates when there is no other customer that can be deleted from the routes to enable a feasible insertion of customer ‘ b ’. For this case, customer ‘ b ’ is added to the route with the smallest capacity violation and the route is penalized accordingly as will be discussed in Section 3.4 .
+[2]
+
+
+
+
+
+
+
+
+https://cs.wikipedia.org/wiki/Probl%C3%A9m_obchodn%C3%ADho_cestuj%C3%ADc%C3%ADho
+ 
