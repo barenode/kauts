@@ -5,7 +5,9 @@ Pro pouziti v humanitarni oblasti, at uz pri evakuaci nebo distribuci pomoci exi
 Kontext, který je blíže humanitárnímu pøístupu, lze nalézt v odborne literatuøe jako problém kumulativního kapacitního smìrování vozidel s více cestami (MT-CCVRP), což je varianta MTCVRP s tím rozdílem, že nyní je cílem minimalizace souètu èasù pøíjezdu do jednotlivych destinaci. To znamená minimalizaci èekací doby obìti katastrof žádajích o pomoc, také známé jako latence. V tomto èlánku budeme místo klasického latence uvažovat o maximální èekací doba v jednotlivych destinaci, tj. minimalizace èasu èekání poslední postižené obìti v oblasti katastrofy, která má být navštívena. Mezi klasickou a maximalni latenci je zasadni rozdil. Kdy pri humanitární katastrofì je dùležitìjší minimalizace èekací doby poslední postižené obìti evakuované pøi katastrofì  spíše než souèet všech. Tímto zpùsobem se snažíme vyhnout tomu ze by nektere postižene obìti v oblasti katastrofy èekaly na zachranmu velmi dlouho, zatim co by byl zbytek evakuován vyrazne døíve. To znamená, že se snažíme vyrovnat èekací dobu na evakuaci všech postižených.
 [1]
 
-(MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je obvykle definovan jako ohodnoceny orientovany graf kde uzly jsou jednotlive destinace (v nasem pripade obìti cekajici na zachranu) a hrany jsou cesty spojujici tyto destinace. Hodnoty ran odpovidaji jejich cetovnimu casu. prvni uzle representuje depo kde je disponovana flotila identickych dopravnich prostredku s  limitovanou kapacitou.
+CVRP a prislusne variace je obvykle definovan jako ohodnoceny orientovany graf kde uzly jsou jednotlive destinace (v nasem pripade obìti cekajici na zachranu) a hrany jsou trasy spojujici tyto destinace. Hodnoty hran odpovidaji jejich vzdalenosti resp. cedtovnimu casu. Prvni uzel typicky representuje depo kde je disponovana flotila identickych dopravnich prostredku s limitovanou kapacitou.
+MTVRP vyžaduje stanovení sady jízd a pøiøazení každé jízdy k vozidlu tak, aby se minimalizoval èas jízdy a byly splnìny následující podmínky:
+
 The MTVRP calls for the determination of a set of trips and an assignment of each trip to a  vehicle, such that the traveled time is minimized and the following conditions are satisfied:
 (i) each trip starts and ends at the depot,
 (ii) each customer is visited exactly once,
@@ -31,6 +33,12 @@ though they do not guarantee to find an optimal solution to the problems, may be
 able to find a good solution to them. This is a popular and growing area in the
 literature.
 
+Existuje mnoho stochastických problémù bez známé metody øešení, o které je známo, že fungují
+za rozumné problémy. To vytváøí potøebu heuristiky, která dokonce
+aèkoli nezaruèují nalezení optimálního øešení problémù, mohou být
+najít pro nì dobré øešení. Jedná se o populární a rostoucí oblast v EU
+literatura.
+
 LS
 The role of a LS is to improve a
 given solution by performing a set of small modifications (or moves) to the studied
@@ -38,6 +46,13 @@ solution. One can say that the LS visits the neighborhood of the studied solutio
 and selects the best neighboring solution according to some criterion. After some
 iterations, the LS is no longer able produce better quality solutions using the same
 set of moves. We say that the heuristic is trapped in a local optimum.
+
+Role LS je zlepšovat
+dané øešení provedením sady malých úprav (nebo tahù) studovaného
+øešení. Dá se øíci, že LS navštìvuje okolí studovaného øešení
+a vybere nejlepší sousední øešení podle nìjakého kritéria. Po nìjakém
+iterací, LS již není schopna vyrábìt kvalitnìjší øešení s použitím stejných
+sada pohybù. Øíkáme, že heuristika je uvìznìna v lokálním optimu.
 
 ILS
 We recall that ILS principle is to improve a given initial solution by alternating
@@ -63,6 +78,30 @@ one. The solution is, after that, perturbed using a perturbation procedure. The
 process is repeated until a stopping criterion is met. In the present work, the
 stopping criterion stands for the completion of a given number of iterations
 without improvement.
+
+Pøipomínáme, že principem ILS je zlepšit dané poèáteèní øešení støídáním
+postupy místního vyhledávání (LS) a poruchy.
+Aby LS mohla uniknout místním optimùm, poskytuje ILS poruchový postup.
+Poslednì uvedený postup provádí nìkteré zmìny souèasného lokálního optima
+tím nové výchozí øešení pro LS. Kvalita toho nového
+výchozí øešení obvykle není tak dobré jako kvalita místního optima.
+Toto snížení kvality roztoku vyvolané poruchou
+umožòuje LS navštívit vìtší oblast vyhledávacího prostoru.
+V tomto èlánku se pokoušíme vylepšit jednoduchou heuristiku ILS úpravou
+její místní rešeršní a poruchové postupy. Nìkolik hybridizací ILS
+jsou implementovány na základì nìkolika jednoduchých heuristik LS, variabilního sousedství
+Sestup s náhodným uspoøádáním sousedství (RVND) a velkým sousedstvím
+Prohledejte heuristiku (LNS).
+3.2 Iterované místní vyhledávání
+Princip ILS je popsán v Sect. 1. Použitý pseudokód heuristiky ILS                                                                       
+v tomto èlánku je uveden v Algoritmu 2. ILS zaèíná od poèáteèního øešení
+dáno konstrukèní heuristikou prezentovanou v Sect. 3.1. Pak místní vyhledávání
+procedura se provádí pro daný poèet iterací. Pokud je získané øešení
+je lepší než ten souèasný nejlepší, nejlepší øešení je nahrazeno získaným
+jeden. Øešení je poté rozrušeno použitím poruchového postupu.
+proces se opakuje, dokud není splnìno kritérium zastavení. V této práci se
+kritérium zastavení znamená dokonèení daného poètu iterací
+bez vylepšení.
 [2]
 
 
@@ -76,15 +115,27 @@ search in which wider and wider neighborhoods are successively explored [53]. Th
 resulting hybrid metaheuristic is sketched in Algorithm 1 while its internal components
 are described in the sequel.
 MaxStart successive ILS are executed
+
+Navrhovaná metaheuristika je opakované lokální vyhledávání (MS-ILS) s více starty, které volá
+variabilní sestup sousedství (VND). Efektivita prokázala opakované místní vyhledávání
+k rùzným optimalizaèním problémùm viz tutoriál Lourenço et al. [47]. MSILS
+varianta, spoèívající v restartování ILS z nìkolika poèáteèních øešení pro diverzifikaci
+vyhledávání poskytlo na CVRP vynikající øešení [63]. VND je druh místní
+vyhledávání, v nìmž se postupnì zkoumají širší a širší okolí [53].
+výsledná hybridní metaheuristika je naèrtnuta v Algoritmu 1, zatímco její vnitøní komponenty
+jsou popsány v pokraèování.
+Vyvolá se po sobì následující ILS
 [3]
 
 TABU SEARCH
 Tabu search enhances the performance of local search by relaxing its basic rule. First, at each step worsening moves can be accepted if no improving move is available (like when the search is stuck at a strict local minimum). In addition, prohibitions (henceforth the term tabu) are introduced to discourage the search from coming back to previously-visited solutions.
 
+Tabu search zvyšuje výkon lokálního vyhledávání uvolnìním jeho základního pravidla. Za prvé, v každém kroku mohou být pøijaty zhoršující pohyby, pokud není k dispozici žádný zlepšující pohyb (jako když je hledání uvíznuto na pøísném místním minimu). Kromì toho jsou zavedeny zákazy (dále jen „tabu“), které odrazují vyhledávání od návratu k døíve navštíveným øešením.
 
 
 
 
+ MP solvers are in most of optimization software availabke in the market place. Existuji jak komercni reseni napr. LINGO nebo Gurobi tak i volne dostupne napr SCIP.
 
 
 
