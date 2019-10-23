@@ -1,0 +1,60 @@
+Smerovani vozidel pri rozsahlych evakuacich
+
+Problem smerovani vozidel (VRP - Vehicle Routing Problem) je optimalizacni uloha pro planovani tras flotily vozidel pro obsluhu skupiny zakazniku. Tato uloha patří mezi tzv. NP-těžké úlohy, to znamena ze v obecném případě není známo, ani jak pro každý vstup nalézt přesné řešení v rozumném čase, a dokonce ani zda vůbec může existovat algoritmus, který takové řešení najde v akceptovatelnem čase. V praxi se podobná úloha obvykle řeší pouze přibližně (heuristickými algoritmy, např. genetickými algoritmy, tabu prohledáváním atd.). Tím se (za cenu vzdání se nároku na nalezení optimálního řešení) dosahuje prakticky použitelných časů.
+Pro pouziti v humanitarni oblasti, at uz pri evakuaci nebo distribuci pomoci existuje pro problémy se směrováním vozidel nekolik variaci  a specializaci problému. Jedna se zejmena o variaci kdy se v problemu musi pocitat s omezenou kapacitou vozidel CVRP - Capacitated Vehicle Routing Problem). (MTCVRP -Multi-Trip Capacitated Vehicle Routing Problem ) je varianta CVRP kde je jednotlive vozidla mozne pouzit v ramci vice cest. V  je typickym cílem MTCVRP minimalizace součtu cestovních nákladu (v jednotkách času nebo v jednotkách vzdálenosti).
+Kontext, který je blíže humanitárnímu přístupu, lze nalézt v odborne literatuře jako problém kumulativního kapacitního směrování vozidel s více cestami (MT-CCVRP), což je varianta MTCVRP s tím rozdílem, že nyní je cílem minimalizace součtu časů příjezdu do jednotlivych destinaci. To znamená minimalizaci čekací doby oběti katastrof žádajích o pomoc, také známé jako latence. V tomto článku budeme místo klasického latence uvažovat o maximální čekací doba v jednotlivych destinaci, tj. minimalizace času čekání poslední postižené oběti v oblasti katastrofy, která má být navštívena. Mezi klasickou a maximalni latenci je zasadni rozdil. Kdy pri humanitární katastrofě je důležitější minimalizace čekací doby poslední postižené oběti evakuované při katastrofě  spíše než součet všech. Tímto způsobem se snažíme vyhnout tomu ze by nektere postižene oběti v oblasti katastrofy čekaly na zachranmu velmi dlouho, zatim co by byl zbytek evakuován vyrazne dříve. To znamená, že se snažíme vyrovnat čekací dobu na evakuaci všech postižených.
+[1]
+
+VRP a jeho variace je obvykle definovan jako ohodnoceny orientovany graf kde uzly jsou jednotlive destinace (v nasem pripade oběti cekajici na zachranu) a hrany jsou trasy spojujici tyto destinace. Hodnoty hran odpovidaji jejich vzdalenosti resp. cedtovnimu casu. Prvni uzel typicky representuje depo kde je disponovana flotila identickych dopravnich prostredku s limitovanou kapacitou. MTVRP vyžaduje stanovení sady jízd a přiřazení každé jízdy k vozidlu tak, aby se minimalizoval čas jízdy a byly splněno ze, kazda cesta zacin a akonci v depu a dale ze neni prekrocena kapacita zadneho vozidla [4].
+
+Pro řešení různých variant VRP se používá několik přístupů. Hlavní rozdĺ v metodách řešení je zejména mezi přesnými metodami na jedné straně a heuristickými metodami na straně druhé. Přestože realistické VRP problémy VRP se často obtížně řeší, byly s určitým úspěchem použity přesné metody. Tyto metody považují problém za zvláštní případ celočíselného nebo smíšeného celočíselného programu. [6].  Nastroje pro reseni techto uloh takzvane solvery jsou pritomne ve vetsine soucasneho optimizacniho software. Existuji jak komercni reseni napr. LINGO nebo Gurobi tak i volne dostupne napr SCIP.
+
+Aktualne existuje cela rada problémů bez známé metody přesného řešení pri realnem pouziti. To vytváří potřebu takzvanych heuristik, ktere ačkoli nezaručují nalezení nejoptimálnejsiho řešení problému, mohou být schopne nalezt dostatecne dobré řešení dostatecne rychle. Jedná se o populární a rostoucí oblast v oblasti VRP. Pro pouziti heuristik v ramci VRP existuje nekolik zakladnich strategii. Tyto strategie se typicky aplikuji na nejake vychozi reseni a pokouseji se ho iterativne vylepsit.
+Heuristiky zalozene na strategii lokalniho prohledávání (LS - Local Search) se pokousi zlepšovat dané řešení provedením sady malých úprav (neboli tahů) vychoziho řešení. Dá se říci, že LS navštěvuje blizke okolí studovaného řešení a vybira nejlepší sousední řešení podle nějakého kritéria. Po urcitem poctu iterací již LS není schopna vyrábět kvalitnější řešení. Říkáme, že je heuristika uvězněna v lokálním optimu [2]. Odvozena strategie TS (Tabu search) zvyšuje výkon LS uvolněním jeho základního pravidla. Za prvé, v každém kroku mohou být přijaty zhoršující pohyby, pokud není k dispozici žádný zlepšující pohyb (hledání uvíznuto na přísném lokalnim minimu). Kromě toho jsou zavedeny zákazy (tzv, „Tabu“), které odrazují vyhledávání od návratu k dříve navštíveným řešením. Dalsi variaci LS je opakované lokální vyhledávání ILS (Iterated Local Search). Principem ILS je zlepšit dané počáteční řešení střídáním postupů místního vyhledávání (LS) a rozrušování. Aby LS mohla uniknout místním optimům, poskytuje ILS dodatecny rozrušovací postup. Tento postup provádí dodatecne upravy současného lokálního optima a vytvari tím nové výchozí řešení pro LS. Kvalita toho nového výchozí řešení sice obvykle není tak dobra jako kvalita místního optima. Tento postup ale umožňuje LS prohledat větší oblast prostoru reseni [2]. (MS-ILS) je opakované lokální vyhledávání (ILS) s více starty. Tato varianta, spočíva v restartování ILS z několika počátečních řešení pro diverzifikaci vyhledávání [3]. 
+
+
+
+
+
+
+
+
+V tomto článku se pokoušíme vylepšit jednoduchou heuristiku ILS úpravou její místní rešeršní a poruchové postupy. Několik hybridizací ILS jsou implementovány na základě několika jednoduchých heuristik LS, variabilního sousedství Sestup s náhodným uspořádáním sousedství (RVND) a velkým sousedstvím
+Prohledejte heuristiku (LNS).
+3.2 Iterované místní vyhledávání
+Princip ILS je popsán v Sect. 1. Použitý pseudokód heuristiky ILS                                                                       
+v tomto článku je uveden v Algoritmu 2. ILS začíná od počátečního řešení
+dáno konstrukční heuristikou prezentovanou v Sect. 3.1. Pak místní vyhledávání
+procedura se provádí pro daný počet iterací. Pokud je získané řešení
+je lepší než ten současný nejlepší, nejlepší řešení je nahrazeno získaným
+jeden. Řešení je poté rozrušeno použitím poruchového postupu.
+proces se opakuje, dokud není splněno kritérium zastavení. V této práci se
+kritérium zastavení znamená dokončení daného počtu iterací
+bez vylepšení.
+[2]
+
+(MS-ILS) je opakované lokální vyhledávání (MS-ILS) s více starty, které volá
+variabilní sestup sousedství (VND). Efektivita prokázala opakované místní vyhledávání
+k různým optimalizačním problémům viz tutoriál Lourenço et al. [47]. MSILS
+varianta, spočívající v restartování ILS z několika počátečních řešení pro diverzifikaci
+vyhledávání poskytlo na CVRP vynikající řešení [63]. VND je druh místní
+vyhledávání, v němž se postupně zkoumají širší a širší okolí [53].
+výsledná hybridní metaheuristika je načrtnuta v Algoritmu 1, zatímco její vnitřní komponenty
+jsou popsány v pokračování.
+Vyvolá se po sobě následující ILS
+[3]
+
+
+
+
+
+
+
+
+https://cs.wikipedia.org/wiki/Probl%C3%A9m_obchodn%C3%ADho_cestuj%C3%ADc%C3%ADho
+
+https://link.springer.com/chapter/10.1007/978-3-319-91086-4_4
+ 
+ 
+automation 2018 
+ https://www.springer.com/gp/book/9783319771786
