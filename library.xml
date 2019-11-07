@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:Sources xmlns:b="http://schemas.openxmlformats.org/officeDocument/2006/bibliography" xmlns="http://schemas.openxmlformats.org/officeDocument/2006/bibliography" SelectedStyle="">
+<b:Source>
+<b:Year>2017</b:Year>
+<b:Volume>6</b:Volume>
+<b:BIBTEX_Entry>article</b:BIBTEX_Entry>
+<b:SourceType>JournalArticle</b:SourceType>
+<b:Title>The stochastic vehicle routing problem, a literature review, Part II: solution methods</b:Title>
+<b:BIBTEX_Abstract>Building on the work of Gendreau et al. (Oper Res 44(3):469--477, 1996), and complementing the first part of this survey, we review the solution methods used for the past 20 years in the scientific literature on stochastic vehicle routing problems (SVRP). We describe the methods and indicate how they are used when dealing with stochastic vehicle routing problems.</b:BIBTEX_Abstract>
+<b:Tag>Oyola2017</b:Tag>
+<b:URL>https://doi.org/10.1007/s13676-016-0099-7</b:URL>
+<b:DOI>10.1007/s13676-016-0099-7</b:DOI>
+<b:Author>
+<b:Author>
+<b:NameList>
+<b:Person>
+<b:Last>Oyola</b:Last>
+<b:First>Jorge</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Arntzen</b:Last>
+<b:First>Halvard</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Woodruff</b:Last>
+<b:Middle>L.</b:Middle>
+<b:First>David</b:First>
+</b:Person>
+</b:NameList>
+</b:Author>
+</b:Author>
+<b:Pages>349-388</b:Pages>
+<b:Month>12</b:Month>
+<b:Day>01</b:Day>
+<b:JournalName>EURO Journal on Transportation and Logistics</b:JournalName>
+<b:Number>4</b:Number>
+<b:StandardNumber> ISSN: 2192-4384</b:StandardNumber>
+</b:Source>
+<b:Source>
+<b:Year>2018</b:Year>
+<b:Volume>271</b:Volume>
+<b:BIBTEX_Entry>article</b:BIBTEX_Entry>
+<b:SourceType>JournalArticle</b:SourceType>
+<b:Title>Vehicle routing problems with multiple trips</b:Title>
+<b:BIBTEX_Abstract>This paper presents a survey on the multi-trip vehicle routing problem (MTVRP) and on related routing problems where vehicles are allowed to perform multiple trips and corresponds to the article by Cattaruzza et al. (4OR 14(3):223--259, 2016). The first part of the paper focuses on the MTVRP. It gives an unified view on mathematical formulations and surveys exact and heuristic approaches. The paper continues with variants of the MTVRP and other families of routing problems where multiple trips are sometimes allowed. For the latter, it specially insists on the motivations for having multiple trips and the algorithmic consequences. The expected contribution of the survey is to give a comprehensive overview on a structural property of routing problems that has seen a strongly growing interest in the last few years and that has been investigated in very different areas of the routing literature.</b:BIBTEX_Abstract>
+<b:Tag>Cattaruzza2018</b:Tag>
+<b:URL>https://doi.org/10.1007/s10479-018-2988-7</b:URL>
+<b:DOI>10.1007/s10479-018-2988-7</b:DOI>
+<b:Author>
+<b:Author>
+<b:NameList>
+<b:Person>
+<b:Last>Cattaruzza</b:Last>
+<b:First>Diego</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Absi</b:Last>
+<b:First>Nabil</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Feillet</b:Last>
+<b:First>Dominique</b:First>
+</b:Person>
+</b:NameList>
+</b:Author>
+</b:Author>
+<b:Pages>127-159</b:Pages>
+<b:Month>12</b:Month>
+<b:Day>01</b:Day>
+<b:JournalName>Annals of Operations Research</b:JournalName>
+<b:Number>1</b:Number>
+<b:StandardNumber> ISSN: 1572-9338</b:StandardNumber>
+</b:Source>
+<b:Source>
+<b:Year>2015</b:Year>
+<b:Volume>61</b:Volume>
+<b:BIBTEX_Entry>article</b:BIBTEX_Entry>
+<b:SourceType>JournalArticle</b:SourceType>
+<b:Title>A multistart iterated local search for the multitrip cumulative capacitated vehicle routing problem</b:Title>
+<b:BIBTEX_Abstract>The multitrip cumulative capacitated vehicle routing problem (mt-CCVRP) is a non-trivial extension of the classical CVRP: the goal is to minimize the sum of arrival times at demand nodes and each vehicle may perform several trips. Applications of this NP-hard problem can be found in disaster logistics and maintenance operations. Contrary to the CVRP, the cost of a solution varies if a trip is reversed or if its rank in a multitrip is changed. Moreover, evaluating local search moves in constant time is not obvious. This article presents a mixed integer linear program (MILP), a dominance rule, and a hybrid metaheuristic: a multi-start iterated local search (MS-ILS) calling a variable neighborhood descent with $$O(1)$$O(1)move evaluations. On three sets of instances, MS-ILS obtains good solutions, not only on the mt-CCVRP, but also on the cumulative CVRP where it competes with four existing algorithms. Moreover, the metaheuristic retrieves the optimal solutions of the MILP, which can be computed for small instances using a commercial solver.</b:BIBTEX_Abstract>
+<b:Tag>Rivera2015</b:Tag>
+<b:URL>https://doi.org/10.1007/s10589-014-9713-5</b:URL>
+<b:DOI>10.1007/s10589-014-9713-5</b:DOI>
+<b:Author>
+<b:Author>
+<b:NameList>
+<b:Person>
+<b:Last>Rivera</b:Last>
+<b:Middle>Carlos</b:Middle>
+<b:First>Juan</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Afsar</b:Last>
+<b:Middle>Murat</b:Middle>
+<b:First>H.</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Prins</b:Last>
+<b:First>Christian</b:First>
+</b:Person>
+</b:NameList>
+</b:Author>
+</b:Author>
+<b:Pages>159-187</b:Pages>
+<b:Month>5</b:Month>
+<b:Day>01</b:Day>
+<b:JournalName>Computational Optimization and Applications</b:JournalName>
+<b:Number>1</b:Number>
+<b:StandardNumber> ISSN: 1573-2894</b:StandardNumber>
+</b:Source>
+<b:Source>
+<b:Year>2018</b:Year>
+<b:Volume>24</b:Volume>
+<b:BIBTEX_Entry>article</b:BIBTEX_Entry>
+<b:SourceType>JournalArticle</b:SourceType>
+<b:Title>A Multi-start Algorithm with Intelligent Neighborhood Selection for solving multi-objective humanitarian vehicle routing problems</b:Title>
+<b:BIBTEX_Abstract>In this paper, a problem based on real-world situations in humanitarian logistics is considered, where the main characteristics are the lack of available vehicles and the imperative need of a quick evacuation of all the affected by a disaster, but within the minimum possible travel cost. These aspects will be considered within a Multi-objective Capacitated Vehicle Routing Problem with Multiple Trips, where the objectives under consideration are: minimization of the number of vehicles, of the total travel cost and of the maximum latency. We consider, in this situation, maximum latency to be more relevant than classic latency criteria since reduction of the waiting time of the last affected is crucial for survival when any disaster strikes. For the purpose of producing high-quality solutions, a Multi-start Algorithm with Intelligent Neighborhood Selection is specifically designed and then compared with one of the most competitive reference in the literature, NSGA-II, to prove its superiority.</b:BIBTEX_Abstract>
+<b:Tag>Molina2018</b:Tag>
+<b:URL>https://doi.org/10.1007/s10732-017-9360-y</b:URL>
+<b:DOI>10.1007/s10732-017-9360-y</b:DOI>
+<b:Author>
+<b:Author>
+<b:NameList>
+<b:Person>
+<b:Last>Molina</b:Last>
+<b:First>J.</b:First>
+</b:Person>
+<b:Person>
+<b:Last>López-Sánchez</b:Last>
+<b:Middle>D.</b:Middle>
+<b:First>A.</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Hernández-Díaz</b:Last>
+<b:Middle>G.</b:Middle>
+<b:First>A.</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Martínez-Salazar</b:Last>
+<b:First>I.</b:First>
+</b:Person>
+</b:NameList>
+</b:Author>
+</b:Author>
+<b:Pages>111-133</b:Pages>
+<b:Month>4</b:Month>
+<b:Day>01</b:Day>
+<b:JournalName>Journal of Heuristics</b:JournalName>
+<b:Number>2</b:Number>
+<b:StandardNumber> ISSN: 1572-9397</b:StandardNumber>
+</b:Source>
+<b:Source>
+<b:Year>2019</b:Year>
+<b:BIBTEX_Entry>inproceedings</b:BIBTEX_Entry>
+<b:SourceType>ConferenceProceedings</b:SourceType>
+<b:Title>Impact of Iterated Local Search Heuristic Hybridization on Vehicle Routing Problems: Application to the Capacitated Profitable Tour Problem</b:Title>
+<b:BIBTEX_Abstract>The present paper highlights the impact of heuristic hybridization on Vehicle Routing Problems (VRPs). More specifically, we focus on the hybridization of the Iterated Local Search heuristic (ILS). We propose different hybridization levels for ILS with two other heuristics, namely a Variable Neighborhood Descent with Random neighborhood ordering (RVND) and a Large Neighborhood Search heuristic (LNS). To evaluate the proposed approaches, we test them on a variant of VRPs called the Capacitated Profitable Tour Problem (CPTP). In a CPTP, the visit of all customers is no longer required and the visit of each customer generates a specific profit. The available fleet of vehicle is limited and capacitated. The aim of the CPTP is to choose which set of customers to visit and in which order to maximize the difference between collected profits and routing costs. Our experiments show that the more ILS is hybridized the better are the results. To bring out the effectiveness of the proposed hybrid approach combining ILS, RVND and LNS, a comparison is made between that proposed approach and three local search heuristics from the literature of the CPTP. The obtained results are competitive.</b:BIBTEX_Abstract>
+<b:Tag>Chentli2019</b:Tag>
+<b:Publisher>Springer International Publishing</b:Publisher>
+<b:BookTitle>Operations Research and Enterprise Systems</b:BookTitle>
+<b:Author>
+<b:Author>
+<b:NameList>
+<b:Person>
+<b:Last>Chentli</b:Last>
+<b:First>Hayet</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Ouafi</b:Last>
+<b:First>Rachid</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Cherif-Khettaf</b:Last>
+<b:Middle>Ramdane</b:Middle>
+<b:First>Wahiba</b:First>
+</b:Person>
+</b:NameList>
+</b:Author>
+<b:Editor>
+<b:NameList>
+<b:Person>
+<b:Last>Parlier</b:Last>
+<b:Middle>H.</b:Middle>
+<b:First>Greg</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Liberatore</b:Last>
+<b:First>Federico</b:First>
+</b:Person>
+<b:Person>
+<b:Last>Demange</b:Last>
+<b:First>Marc</b:First>
+</b:Person>
+</b:NameList>
+</b:Editor>
+</b:Author>
+<b:Pages>80-101</b:Pages>
+<b:StandardNumber> ISBN: 978-3-030-16035-7</b:StandardNumber>
+<b:ConferenceName>Operations Research and Enterprise Systems</b:ConferenceName>
+<b:City>Cham</b:City>
+</b:Source>
+</b:Sources>
